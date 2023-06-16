@@ -114,7 +114,7 @@
         subnet_id: "{{ pubsub1_out.subnet.id }}"
         wait: yes
         region: "{{ region }}"
-        if_exist_do_not__create: true #importnant to avoid recreation of nat gateway every run
+        if_exist_do_not_create: true #importnant to avoid recreation of nat gateway every run
       register: NATGW_out
 
     - name: Set up private subnet route table
