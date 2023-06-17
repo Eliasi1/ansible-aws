@@ -59,11 +59,7 @@
         instance_type: t2.micro
         image: "{{bastion_ami}}"
         region: "{{region}}"
-        wait: yes
-        group_id: "{{BastionSG_out.group_id}}"
-        count: 1
         vpc_subnet_id: "{{pubsub1id}}"
-        assign_public_ip: yes      
       register: testinstance_out
 
         
