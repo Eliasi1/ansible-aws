@@ -50,10 +50,7 @@
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1 #to make sure we wont create ec2 instance every run
-        count_tag: #count matched tags
-          Name: "Bastion_host"
-          Project: Vprofile
-          Owner: DevOps Team
+        count_tag: Name #count matched tags
       register: BastionHost_out
 
         
