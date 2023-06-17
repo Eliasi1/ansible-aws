@@ -55,12 +55,9 @@
 
     - name: testing instance
       ec2:
-        key_name: vprofile-key
         instance_type: t2.micro
         image: "{{bastion_ami}}"
         region: "{{region}}"
-        vpc_subnet_id: "{{pubsub1id}}"
-      register: testinstance_out
 
         
 
