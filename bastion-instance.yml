@@ -43,7 +43,7 @@
         image: "{{bastion_ami}}"
         group_id: "{{BastionSG_out.group_id}}"
         wait: yes #wait until healthcheck is ok
-        wait_timeoue: 300
+        wait_timeout: 300
         instance_tags:
           Name: "Bastion_host"
           Project: Vprofile
