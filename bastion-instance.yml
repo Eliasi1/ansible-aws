@@ -35,23 +35,35 @@
             cidr_ip: "{{MYIP}}"
       register: BastionSG_out
     
-    - name: creating Bastion Host
+    # - name: creating Bastion Host
+    #   ec2:
+    #     key_name: vprofile-key
+    #     region: "{{region}}"
+    #     instance_type: t2.micro
+    #     image: "{{bastion_ami}}"
+    #     group_id: "{{BastionSG_out.group_id}}"
+    #     vpc_subnet_id: "{{pubsub1id}}"
+    #     wait: yes #wait until healthcheck is ok
+    #     wait_timeout: 300
+    #     instance_tags:
+    #       Name: "Bastion_host"
+    #       Project: Vprofile
+    #       Owner: DevOps Team
+    #     exact_count: 1 #to make sure we wont create ec2 instance every run
+    #     count_tag: Name #count matched tags
+    #   register: BastionHost_out
+
+    - name: testing instance
       ec2:
         key_name: vprofile-key
-        region: "{{region}}"
         instance_type: t2.micro
         image: "{{bastion_ami}}"
+        wait: yes
         group_id: "{{BastionSG_out.group_id}}"
+        count: 1
         vpc_subnet_id: "{{pubsub1id}}"
-        wait: yes #wait until healthcheck is ok
-        wait_timeout: 300
-        instance_tags:
-          Name: "Bastion_host"
-          Project: Vprofile
-          Owner: DevOps Team
-        exact_count: 1 #to make sure we wont create ec2 instance every run
-        count_tag: Name #count matched tags
-      register: BastionHost_out
+        assign_public_ip: yes      
+      register: testinstance_out
 
         
 
