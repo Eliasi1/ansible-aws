@@ -36,11 +36,11 @@
       register: BastionSG_out
     
     - name: creating Bastion Host
-      ec2:
+      ec2_instance:
         key_name: vprofile-key
         region: "{{region}}"
         instance_type: t2.micro
-        image: "{{bastion_ami}}"
+        image_: "{{bastion_ami}}"
         group_id: "{{BastionSG_out.group_id}}"
         vpc_subnet_id: "{{pubsub1id}}"
         wait: yes #wait until healthcheck is ok
