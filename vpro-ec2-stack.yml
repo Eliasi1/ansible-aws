@@ -155,6 +155,9 @@
 
     - debug:
         var: db01_out.tagged_instances[0].instance_id
+
+    - debug:
+        var: web01_out
     
     - name: Create vprofile-elb Load Balancer
       ec2_elb_lb:
