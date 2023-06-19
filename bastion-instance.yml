@@ -56,7 +56,7 @@
         var: "{{item}}"
       loop:
         - BastionSG_out.group_id
-        - BastionHost_out
+        - BastionHost_out.instance_ids
     
     - name: insert bastionid to output file 
       blockinfile:
