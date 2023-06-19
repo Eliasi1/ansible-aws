@@ -18,9 +18,16 @@
         region: "{{region}}"
       register: vprokey_out
 
-    - name: Save provate key into file loginkey_vpro.pem
+    - name: Save private key into file loginkey_vpro.pem
       copy:
-        content: "{{vprokeyout.key.private_key}}"
+        content: "{{vprokey_out.key.private_key}}"
         dest: "./loginkey_vpro.pem"
         mode: 0600
       when: vprokey_out.changed
+    
+    - name: Create Security Group for Load Balancer
+      ec2_group:
+        name: vproELB-sg
+        description: Allow port 80 from everywhere and all port within sg
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"
