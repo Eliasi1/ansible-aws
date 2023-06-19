@@ -51,6 +51,13 @@
           Owner: DevOps Team
         exact_count: 1 #to make sure we wont create ec2 instance every run
       register: BastionHost_out
+    
+    - debug: 
+        var: "{{item}}"
+      loop:
+        - BastionSG_out.group_id
+        - BastionHost_out
+
 
 
 
