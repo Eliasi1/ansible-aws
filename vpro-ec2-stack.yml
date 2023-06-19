@@ -178,6 +178,11 @@
             instance_port: 80
       delegate_to: localhost
 
+    - name: Create provision-stack/group_vars directory
+      file:
+        path: provision-stack/group_vars
+        state: directory
+
     - name: Create empty hostsip file
       file:
         path: provision-stack/group_vars/hostsip
