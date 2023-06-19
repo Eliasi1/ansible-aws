@@ -153,5 +153,5 @@
         exact_count: 1 #to make sure we wont create ec2 instance every run
       register: db01_out
 
-    
-    
+    - debug:
+        var: db01_out
