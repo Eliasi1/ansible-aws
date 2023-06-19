@@ -178,7 +178,11 @@
             instance_port: 80
       delegate_to: localhost
 
-    
+    - name: Create empty hostsip file
+      file:
+        path: provision-stack/group_vars/hostsip
+      state: touch
+
     - name: Insert/update Hosts IP & Name in file provision-stack/group_vars/hostsip
       blockinfile:
         path: provision-stack/group_vars/hostsip
@@ -194,6 +198,11 @@
         src: loginkey_vpro.pem
         dest: provision_stack/loginkey_vpro.pem
         mode: '0400'
+
+    - name: Create empty inventory-vpro file
+      file:
+        path: provision_stack/inventory-vpro
+      state: touch
 
     - name: Insert/update Inventory file provision_stack/inventory-vpro
       blockinfile:
