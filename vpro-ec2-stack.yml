@@ -19,7 +19,7 @@
       register: vprokey_out
 
     - debug:
-      var: vprokey_out
+        var: vprokey_out
 
     - name: Save private key into file loginkey_vpro.pem
       copy:
