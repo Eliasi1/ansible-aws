@@ -68,4 +68,90 @@
           - proto: all
             group_id: "{{vproStackSG_out.group_id}}"
     
+    - name: Create Nginx web01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image_id: "{{nginx_ami}}"
+        wait: true #wait until healthcheck is ok
+        wait_timeout: 300
+        security_group: "{{vproStackSG_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+        tags:
+          Name: "web01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1 #to make sure we wont create ec2 instance every run
+      register: web01_out
+
+    - name: Create tomcat app01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image_id: "{{tomcat_ami}}"
+        wait: true #wait until healthcheck is ok
+        wait_timeout: 300
+        security_group: "{{vproStackSG_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+        tags:
+          Name: "app01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1 #to make sure we wont create ec2 instance every run
+      register: app01_out
+
+    - name: Create memcache mc01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image_id: "{{memcache_ami}}"
+        wait: true #wait until healthcheck is ok
+        wait_timeout: 300
+        security_group: "{{vproStackSG_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+        tags:
+          Name: "mc01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1 #to make sure we wont create ec2 instance every run
+      register: mc01_out
+
+    - name: Create RabbitMQ mc01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image_id: "{{rmq_ami}}"
+        wait: true #wait until healthcheck is ok
+        wait_timeout: 300
+        security_group: "{{vproStackSG_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+        tags:
+          Name: "rmq01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1 #to make sure we wont create ec2 instance every run
+      register: rmq01_out
+
+    - name: Create Mysql db01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image_id: "{{mysql_ami}}"
+        wait: true #wait until healthcheck is ok
+        wait_timeout: 300
+        security_group: "{{vproStackSG_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+        tags:
+          Name: "db01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1 #to make sure we wont create ec2 instance every run
+      register: db01_out
+
+    
     
