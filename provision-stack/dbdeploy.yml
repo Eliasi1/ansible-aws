@@ -4,8 +4,8 @@
   tasks:
     - name: Copy SQL to dbsrv
       copy:
-        src: files/db_backup.sql
-        dest: /tmp/db_backup.sql
+        src: files/db_backup.sql #path on local machine
+        dest: /tmp/db_backup.sql #path on the remote database 
       tags:
         - deploy
     

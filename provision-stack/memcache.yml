@@ -1,0 +1,38 @@
+---
+- name: Install memcache, start & enable SVC
+  hosts: mcsrvgrp
+  gather_facts: no
+  tasks:
+    - name: Install memcache
+      apt:
+        name: memcached
+        state: present
+        update_cache: yes
+        cache_valid_time: 86400
+      tags:
+        - package
+      
+    - name: Start & Enable memcache
+      service:
+        name: memcached
+        state: started
+        enabled: yes
+      tags:
+        - svc
+    
+    - name: Enale remote login to memcache
+      lineinfile:
+        path: /etc/memcached.conf
+        regexp: '^-l'
+        line: '-l 0.0.0.0' #memcache will listen to all IP addresses and not just the local IP
+        backup: yes
+      notify:
+        - Restart memcached
+      tags:
+        - conf
+  
+  handlers:
+    - name: Restart memcached
+      service:
+        name: memcached
+        state: restarted
