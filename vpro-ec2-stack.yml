@@ -21,10 +21,10 @@
     - debug:
         var: vprokey_out
 
-    - name: Save private key into file loginkey_vpro.pem
+    - name: Save private key into file vprokeypriv.pem
       copy:
         content: "{{vprokey_out.key.private_key}}"
-        dest: "./loginkey_vpro.pem"
+        dest: "./vprokeypriv.pem"
         mode: 0600
       when: vprokey_out.changed
     
@@ -220,8 +220,8 @@
     
     - name: Copy login key to provision-stack directory
       copy:
-        src: loginkey_vpro.pem
-        dest: provision-stack/loginkey_vpro.pem
+        src: vprokeypriv.pem
+        dest: provision-stack/vprokeypriv.pem
         mode: '0400'
 
     - name: Create empty inventory-vpro file
@@ -267,5 +267,5 @@
           
           [stack_inst:vars]
           ansible_user=ubuntu
-          ansible_ssh_private_key_file=loginkey_vpro.pem
+          ansible_ssh_private_key_file=vprokeypriv.pem
           #ansible_python_interpreter=/usr/bin/python3
