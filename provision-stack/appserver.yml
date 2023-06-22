@@ -65,7 +65,7 @@
     
     - name: just force systemd to reread configs (2.4 and above)
       systemd:
-        deamon_reload: yes
+        daemon_reload: yes
     
     - name: Strat & enable tmcat SVC
       service:
